@@ -1,0 +1,126 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar mb-5" src="~/images/avataaars.svg" alt="" />
+        <!-- Masthead Heading-->
+        <h1 class="masthead-heading text-uppercase mb-0">HER GÜN KELİME ÖĞRENİN</h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+    </div>
+</header>
+<!-- Portfolio Section-->
+<section class="page-section portfolio" id="portfolio">
+    <div class="container">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">CATEGORIES</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- Portfolio Grid Items-->
+        <div class="row">
+            <!-- Portfolio Item 1-->
+            <div class="col-md-6 col-lg-4 mb-5">
+                <div class="portfolio-item mx-auto">
+                    <a asp-area="" asp-controller="Category" asp-action="Home">
+                        <div class="portfolio-item-caption  align-items-center justify-content-center h-100 w-100 ">
+                            <div class="portfolio-item-caption-content text-center text-white ">
+                                <p style="margin-top: 100px;">
+                                    HOME
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/images/portfolio/cabin.png" alt="" />
+                    </a>
+                </div>
+            </div>
+            <!-- Portfolio Item 2-->
+            <div class="col-md-6 col-lg-4 mb-5">
+                <div class="portfolio-item mx-auto">
+                    <a asp-area="" asp-controller="Category" asp-action="Food">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>
+                                    FOOD
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/images/portfolio/cake.png" alt="" />
+                    </a>
+                </div>
+            </div>
+            <!-- Portfolio Item 3-->
+            <div class="col-md-6 col-lg-4 mb-5">
+                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal3">
+                    <a asp-area="" asp-controller="Category" asp-action="Verb">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>
+                                    VERBS
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/images/portfolio/circus.png" alt="" />
+                    </a>
+                </div>
+            </div>
+            <!-- Portfolio Item 4-->
+            <div class="col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal4">
+                    <a asp-area="" asp-controller="Category" asp-action="Technology">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>
+                                    TECHNOLOGY
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/images/portfolio/game.png" alt="" />
+                    </a>
+                </div>
+            </div>
+            <!-- Portfolio Item 5-->
+            <div class="col-md-6 col-lg-4 mb-5 mb-md-0">
+                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal5">
+                    <a asp-area="" asp-controller="Category" asp-action="Transportation">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>
+                                    TRANSPORTATION
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/images/portfolio/submarine.png" alt="" />
+                    </a>
+                </div>
+            </div>
+            <!-- Portfolio Item 6-->
+            <div class="col-md-6 col-lg-4">
+                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#portfolioModal6">
+                    <a asp-area="" asp-controller="Category" asp-action="General">
+                        <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <p>
+                                    GENERAL
+                                </p>
+                            </div>
+                        </div>
+                        <img class="img-fluid" src="~/images/portfolio/safe.png" alt="" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
