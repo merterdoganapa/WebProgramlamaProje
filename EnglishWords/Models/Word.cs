@@ -12,7 +12,7 @@ namespace EnglishWords.Models
         public string word_en { get; set; }
         public string word_tr { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public User User { get; set; }
 
         public string Category { get; set; }
