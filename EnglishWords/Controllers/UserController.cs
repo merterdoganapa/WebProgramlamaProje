@@ -46,11 +46,21 @@ namespace MyEnglishWords.Controllers
             return RedirectToAction("Dashboard");
         }
 
+        public string GetStringUsername()
+        {
+            return HttpContext.Session.GetString("Username");
+        }
+
+        public string GetStringRole()
+        {
+            return HttpContext.Session.GetString("Role");
+        }
+
         public IActionResult Dashboard()
         {
-            if (HttpContext.Session.GetString("Username") != null)
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Username")))
             {
-               
+                return RedirectToAction("Login");
             }
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
@@ -85,6 +95,12 @@ namespace MyEnglishWords.Controllers
             }
             
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

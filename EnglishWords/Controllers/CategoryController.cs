@@ -37,27 +37,47 @@ namespace MyEnglishWords.Controllers
 
         public IActionResult Food()
         {
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            ViewBag.WordList = _context.Word.Where(x => x.Category == "Food").ToList();
+            ViewBag.UserList = _context.User.ToList();
             return View();
         }
 
         public IActionResult Verb()
         {
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            ViewBag.WordList = _context.Word.Where(x => x.Category == "Verb").ToList();
+            ViewBag.UserList = _context.User.ToList();
             return View();
         }
 
         public IActionResult Technology()
         {
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            ViewBag.WordList = _context.Word.Where(x => x.Category == "Technology").ToList();
+            ViewBag.UserList = _context.User.ToList();
             return View();
         }
 
 
         public IActionResult Transportation()
         {
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            ViewBag.WordList = _context.Word.Where(x => x.Category == "Transportation").ToList();
+            ViewBag.UserList = _context.User.ToList();
             return View();
         }
 
         public IActionResult General()
         {
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.Role = HttpContext.Session.GetString("Role");
+            ViewBag.WordList = _context.Word.Where(x => x.Category == "General").ToList();
+            ViewBag.UserList = _context.User.ToList();
             return View();
         }
 
