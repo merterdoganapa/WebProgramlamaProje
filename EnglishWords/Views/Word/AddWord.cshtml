@@ -1,22 +1,13 @@
-﻿@model EnglishWords.Models.User
+﻿@model EnglishWords.Models.Word
 @{
     ViewData["Title"] = "Login";
 }
 
-
-
 <section class="page-section" id="contact" style="margin-top: 100px;">
     <div class="container">
 
-        @if (ViewBag.Message != null)
-        {
-            <div class="alert alert-danger text-center" role="alert">
-                @ViewBag.Message
-            </div>
-        }
-
         <!-- Contact Section Heading-->
-        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">LOGIN</h2>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">ADD A WORD</h2>
         <!-- Icon Divider-->
         <div class="divider-custom">
             <div class="divider-custom-line"></div>
@@ -26,21 +17,21 @@
         <!-- Contact Section Form-->
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <form asp-action="Login" method="POST">
+                <form asp-action="AddWord" method="POST">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label asp-for="Username">Username</label>
-                            <input asp-for="Username" class="form-control" name="username" placeholder="Username" required="required" data-validation-required-message="Please enter your username." />
+                            <label asp-for="word_en">KELİME</label>
+                            <input asp-for="word_en" class="form-control" placeholder="İNGİLİZCE KELİME" required="required" data-validation-required-message="Please enter your username." />
                             <p class="help-block text-danger"></p>
-                            <span asp-validation-for="Username" class="text-danger"></span>
+                            <span asp-validation-for="word_en" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 pb-2">
-                            <label asp-for="Password">Password</label>
-                            <input asp-for="Password" class="form-control" name="password" type="password" placeholder="Password" required="required" data-validation-required-message="Please enter your password." />
+                            <label asp-for="word_tr">TÜRKÇE KARŞILIĞI</label>
+                            <input asp-for="word_tr" class="form-control" placeholder="TÜRKÇE KARŞILIĞI" required="required" data-validation-required-message="Please enter your password." />
                             <p class="help-block text-danger"></p>
-                            <span asp-validation-for="Password" class="text-danger"></span>
+                            <span asp-validation-for="word_tr" class="text-danger"></span>
                         </div>
                     </div>
                     <br />

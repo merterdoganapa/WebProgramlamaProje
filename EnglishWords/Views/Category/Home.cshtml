@@ -1,8 +1,7 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Home";
 }
-
 <div class="container" style="margin-top: 175px;">
     <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">HOME</h2>
     <!-- Icon Divider-->
@@ -11,52 +10,57 @@
         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
         <div class="divider-custom-line"></div>
     </div>
-    <div class="divider-custom">
-        <div class="divider-custom-icon"><a href="/word/addWord/home" class="btn btn-primary btn-xl">Kelime Ekle</a></div>
-    </div>
-    <table class="table text-center" style="margin-bottom:100px;">
-        <thead style="background:#1abc9c;">
-            <tr>
-                <th scope="col">Kelime</th>
-                <th scope="col">Karşılığı</th>
-                <th scope="col">Ekleyen</th>
-                <th scope="col"></th>
-
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var item in @ViewBag.WordList)
-            {
-            <tr>
-                <th scope="row"><a>@item.word_en</a></th>
-                <td>@item.word_tr</td>
-                @foreach (var user in ViewBag.UserList)
-                {
-                    @if (user.Id == item.UserId)
-                    {
-                        <td>@user.Username</td>
-                        break;
-                    }
-                }
-                @if (ViewBag.Role == "True")
-                {
-                 <td>
-                    <a href=""><img src="~/images/trash.png" alt=""></a>
-                    <a href=""><img src="~/images/arrow.png" alt=""></a>
-                 </td>
-                }
-            </tr>
-
-
-            }
-
-        </tbody>
-    </table>
-    @if (ViewBag.WordList == null)
+    @if (Context.Session.GetString("Username") != null)
     {
+        <div class="divider-custom">
+            <div class="divider-custom-icon"><a href="/Word/AddWord/1" class="btn btn-primary btn-xl">Kelime Ekle</a></div>
+        </div>
+    }
+    @if (@ViewBag.WordList.Count != 0)
+    {
+        <table class="table text-center" style="margin-bottom:100px;">
+            <thead style="background:#1abc9c;">
+                <tr>
+                    <th scope="col">Kelime</th>
+                    <th scope="col">Karşılığı</th>
+                    <th scope="col">Ekleyen</th>
+                    <th scope="col"></th>
 
-        <div class="alert alert-danger text-center" style="margin-top:100px;">Henüz Kelime Eklemediniz</div>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in @ViewBag.WordList)
+                {
+                    <tr>
+                        <th scope="row"><a>@item.word_en</a></th>
+                        <td>@item.word_tr</td>
+                        @foreach (var user in ViewBag.UserList)
+                        {
+                            @if (user.Id == item.UserId)
+                            {
+                                <td>@user.Username</td>
+                                break;
+                            }
+                        }
+                        @if (ViewBag.Role == "True")
+                        {
+                            <td>
+                                <a href="/Word/DeleteWord/@item.Id"><img src="~/images/trash.png" alt=""></a>
+                                <a href="/word/update/"><img src="~/images/arrow.png" alt=""></a>
+                            </td>
+                        }
+                    </tr>
+
+
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+<div class="alert alert-danger text-center" style="margin-top:100px;">Bu kategoriye henüz kelime eklenmedi.</div>
     }
 
 

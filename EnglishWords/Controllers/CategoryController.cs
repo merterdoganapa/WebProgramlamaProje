@@ -25,12 +25,19 @@ namespace MyEnglishWords.Controllers
             _context = context;
         }
 
+        public IActionResult MyWords()
+        {
+            ViewBag.words = _context.Word.Where(x => x.UserId == int.Parse(HttpContext.Session.GetString("UserId")));
+            ViewBag.Username = HttpContext.Session.GetString("Username");
+            return View();
+        }
+
         //[Authorize]
         public IActionResult Home()
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x=> x.Category == "Home").ToList();
+            ViewBag.WordList = _context.Word.Where(x=> x.Category == Category.Home).ToList();
             ViewBag.UserList = _context.User.ToList();
             return View();
         }
@@ -39,7 +46,7 @@ namespace MyEnglishWords.Controllers
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == "Food").ToList();
+            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Food).ToList();
             ViewBag.UserList = _context.User.ToList();
             return View();
         }
@@ -48,7 +55,7 @@ namespace MyEnglishWords.Controllers
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == "Verb").ToList();
+            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Verb).ToList();
             ViewBag.UserList = _context.User.ToList();
             return View();
         }
@@ -57,7 +64,7 @@ namespace MyEnglishWords.Controllers
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == "Technology").ToList();
+            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Technology).ToList();
             ViewBag.UserList = _context.User.ToList();
             return View();
         }
@@ -67,7 +74,7 @@ namespace MyEnglishWords.Controllers
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == "Transportation").ToList();
+            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Transportation).ToList();
             ViewBag.UserList = _context.User.ToList();
             return View();
         }
@@ -76,7 +83,7 @@ namespace MyEnglishWords.Controllers
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
             ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == "General").ToList();
+            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.General).ToList();
             ViewBag.UserList = _context.User.ToList();
             return View();
         }

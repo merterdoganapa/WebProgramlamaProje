@@ -157,3 +157,5 @@ C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\bin\Debug\netcoreapp3.1\Mi
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\User\Dashboard.cshtml.g.cs
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Word\AddWord.cshtml.g.cs
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Category\MyWords.cshtml.g.cs

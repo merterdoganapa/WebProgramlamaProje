@@ -36,25 +36,21 @@ namespace MyEnglishWords.Controllers
 
             if (LoggedInUser == null)
             {
-                ViewBag.Message = " Kullanıcı adıyla parola eşleşmemektedir .";
+                ViewBag.Message = " Bilgilerinizi kontrol ediniz .";
                 return View();
             }
 
             HttpContext.Session.SetString("Username", LoggedInUser.Username);
+            HttpContext.Session.SetString("UserId", Convert.ToString(LoggedInUser.Id));
             HttpContext.Session.SetString("Role", Convert.ToString(LoggedInUser.is_superuser));
-
-            return RedirectToAction("Dashboard");
+            if (HttpContext.Session.GetString("Role") == "True")
+            {
+                return RedirectToAction("Dashboard");
+            }
+            return RedirectToAction("Index", "Home");
         }
 
-        public string GetStringUsername()
-        {
-            return HttpContext.Session.GetString("Username");
-        }
-
-        public string GetStringRole()
-        {
-            return HttpContext.Session.GetString("Role");
-        }
+        
 
         public IActionResult Dashboard()
         {
@@ -96,11 +92,21 @@ namespace MyEnglishWords.Controllers
             
             return View();
         }
-
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login");
+        }
+
+
+        public string GetStringUsername()
+        {
+            return HttpContext.Session.GetString("Username");
+        }
+
+        public string GetStringRole()
+        {
+            return HttpContext.Session.GetString("Role");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
