@@ -73,16 +73,13 @@ namespace EnglishWords.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateWord(int id) // Admin veya kelimeyi ekleyen kişi ise kelimeyi güncelleyebilir.
         {
+
+            ViewBag.word = await _context.Word.FindAsync(id);
             
-            var word = await _context.Word.FindAsync(id);
-            var user = await _context.User.FindAsync(word.UserId);
-            
-            if((id == null) && (HttpContext.Session.GetString("Username") == user.Username || user.is_superuser == true))
+            if(id == null)
             {
                 return NotFound();
             }
-            ViewBag.word = word;
-            ViewBag.Username = HttpContext.Session.GetString("Username");
             return View();
         }
 

@@ -44,7 +44,7 @@
                             @if (Context.Session.GetString("Role") == "True" || int.Parse(Context.Session.GetString("UserId")) == comment.UserId)
                             {
                                 <a asp-area="" asp-controller="Comment" asp-action="DeleteComment" asp-route-id="@comment.Id">Sil</a>
-                                <a href="">Güncelle</a>
+                                <a asp-area="" asp-controller="Comment" asp-action="UpdateComment" asp-route-id="@comment.Id">Güncelle</a>
                             }
 
                             <br>

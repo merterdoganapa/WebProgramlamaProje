@@ -40,33 +40,31 @@ namespace EnglishWords.Controllers
         public async Task<IActionResult> UpdateComment(int id) // Admin veya kelimeyi ekleyen kişi ise kelimeyi güncelleyebilir.
         {
 
-            var word = await _context.Word.FindAsync(id);
-            var user = await _context.User.FindAsync(word.UserId);
-
-            if ((id == null) && (HttpContext.Session.GetString("Username") == user.Username || user.is_superuser == true))
+            if (id == null)
             {
                 return NotFound();
             }
-            ViewBag.word = word;
-            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.Comment = _context.Comment.Find(id).Comment_content;
             return View();
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateComment(Word word, int id) // Admin veya kelimeyi ekleyen kişi ise kelimeyi güncelleyebilir.
-        {
-            Word degistirelecekKelime = await _context.Word.FindAsync(id);
-            degistirelecekKelime.word_en = word.word_en;
-            degistirelecekKelime.word_tr = word.word_tr;
-            _context.Word.Update(degistirelecekKelime);
-            _context.SaveChanges();
-            if (HttpContext.Session.GetString("Role") == "True")
-            {
-                return RedirectToAction("Dashboard", "User");
-            }
-            return RedirectToAction("MyWords", "Category");
-        }
 
+        [HttpPost]
+        public async Task<IActionResult> UpdateComment(string sentence,int id) // Admin veya kelimeyi ekleyen kişi ise kelimeyi güncelleyebilir.
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Comment comment = await _context.Comment.FindAsync(id);
+            comment.Comment_content = sentence;
+            comment.date_created = DateTime.Now;
+            _context.Comment.Update(comment);
+            _context.SaveChangesAsync();
+            return RedirectToAction("Detail","Word",new {id = comment.WordId});
+        }
 
 
 
