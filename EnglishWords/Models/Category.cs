@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EnglishWords.Models
 {
-    public enum Category
+    public enum  Category
     {
         Home = 1,
         Food = 2,
@@ -13,7 +13,6 @@ namespace EnglishWords.Models
         Technology = 4,
         Verb = 5,
         Transportation = 6
-
     }
     
 }

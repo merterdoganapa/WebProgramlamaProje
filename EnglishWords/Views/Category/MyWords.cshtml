@@ -11,39 +11,42 @@
         <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
         <div class="divider-custom-line"></div>
     </div>
-    <table class="table text-center">
-        <thead style="background:#1abc9c;">
-            <tr>
-                <th scope="col">Kelime</th>
-                <th scope="col">Karşılığı</th>
-                <th scope="col">Kategori</th>
-                <th scope="col"></th>
-
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach (var word in @ViewBag.words)
-            {
+    @if (@ViewBag.WordList.Count != 0)
+    {
+        <table class="table text-center" style="margin-bottom:100px;">
+            <thead style="background:#1abc9c;">
                 <tr>
-                    <th scope="row"><a href="">@word.word_en</a></th>
-                    <td>@word.word_tr</td>
-                    <td>@word.Category</td>
-                    <td>
-                        <a href="/Word/DeleteWord/@word.Id"><img src="~/images/trash.png" alt=""></a>
-                        <a href="/word/update/"><img src="~/images/arrow.png" alt=""></a>
-                    </td>
+                    <th scope="col">Kelime</th>
+                    <th scope="col">Karşılığı</th>
+                    <th scope="col">Ekleyen</th>
+                    <th scope="col"></th>
 
                 </tr>
-            }
+            </thead>
+            <tbody>
+
+                @foreach (var item in @ViewBag.WordList)
+                {
+                    <tr>
+                        <th scope="row"><a>@item.word_en</a></th>
+                        <td>@item.word_tr</td>
+                        <td>@item.Category</td>
+                        <td>
+                            <a href="/Word/DeleteWord/@item.Id"><img src="~/images/trash.png" alt=""></a>
+                            <a href="/Word/UpdateWord/@item.Id"><img src="~/images/arrow.png" alt=""></a>
+                        </td>
+                        
+                    </tr>
 
 
-        </tbody>
-    </table>
+                }
 
-    @if (ViewBag.words == null)
+            </tbody>
+        </table>
+    }
+    else
     {
-        <div class="alert alert-danger text-center" style="margin-top:100px;">Henüz Kelime Eklemediniz</div>
+        <div class="alert alert-danger text-center" style="margin-top:100px;">Henüz kelime eklemediniz.</div>
     }
 
 

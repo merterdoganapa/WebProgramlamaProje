@@ -14,7 +14,7 @@ namespace EnglishWords.Models
         public string Mail { get; set; }
         public int Password { get; set; }
 
-        public DateTime date_joined { get; set; } = DateTime.UtcNow;
+        public DateTime date_joined { get; set; }
 
         public bool is_superuser { get; set; } = false;
     }

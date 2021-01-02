@@ -9,9 +9,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using EnglishWords.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyEnglishWords.Controllers
 {
+
+    [Authorize(Roles = "Admin,User")]
     public class CategoryController:Controller
     {
 
@@ -27,65 +30,43 @@ namespace MyEnglishWords.Controllers
 
         public IActionResult MyWords()
         {
-            ViewBag.words = _context.Word.Where(x => x.UserId == int.Parse(HttpContext.Session.GetString("UserId")));
-            ViewBag.Username = HttpContext.Session.GetString("Username");
+            ViewBag.WordList = _context.Word.Where(x => x.UserId == int.Parse(HttpContext.Session.GetString("UserId"))).ToList();
             return View();
         }
-
-        //[Authorize]
         public IActionResult Home()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x=> x.Category == Category.Home).ToList();
-            ViewBag.UserList = _context.User.ToList();
-            return View();
+            var wordListesi = _context.Word.Include(x => x.User).Where(c => c.Category == Category.Home).ToList();
+            return View(wordListesi);
         }
-
         public IActionResult Food()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Food).ToList();
-            ViewBag.UserList = _context.User.ToList();
-            return View();
+            var wordListesi = _context.Word.Include(x => x.User).Where(c => c.Category == Category.Food).ToList();
+            return View(wordListesi);
         }
-
+        
         public IActionResult Verb()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Verb).ToList();
-            ViewBag.UserList = _context.User.ToList();
-            return View();
+            var wordListesi = _context.Word.Include(x => x.User).Where(c => c.Category == Category.Verb).ToList();
+            return View(wordListesi);
         }
 
         public IActionResult Technology()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Technology).ToList();
-            ViewBag.UserList = _context.User.ToList();
-            return View();
+            var wordListesi = _context.Word.Include(x => x.User).Where(c => c.Category == Category.Technology).ToList();
+            return View(wordListesi);
         }
 
 
         public IActionResult Transportation()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.Transportation).ToList();
-            ViewBag.UserList = _context.User.ToList();
-            return View();
+            var wordListesi = _context.Word.Include(x => x.User).Where(c => c.Category == Category.Transportation).ToList();
+            return View(wordListesi);
         }
 
         public IActionResult General()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            ViewBag.WordList = _context.Word.Where(x => x.Category == Category.General).ToList();
-            ViewBag.UserList = _context.User.ToList();
-            return View();
+            var wordListesi = _context.Word.Include(x => x.User).Where(c => c.Category == Category.General).ToList();
+            return View(wordListesi);
         }
 
 

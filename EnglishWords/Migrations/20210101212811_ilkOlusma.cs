@@ -33,7 +33,8 @@ namespace EnglishWords.Migrations
                     word_en = table.Column<string>(nullable: true),
                     word_tr = table.Column<string>(nullable: true),
                     UserId = table.Column<int>(nullable: true),
-                    Category = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: true),
+                    Category = table.Column<int>(nullable: false),
                     date_created = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

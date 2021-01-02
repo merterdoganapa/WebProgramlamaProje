@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container" style="margin-top:200px;">
+    <h3 style="text-align:center;margin:30px 0px;">Kullanıcı Listesi</h3>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in ViewBag.UserList)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@user.Username</td>
+                    <td>Otto</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3 style="text-align:center;margin-top:100px;margin-bottom:30px">Kelime Listesi</h3>
+    <table class="table" style="">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var word in ViewBag.WordList)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@word.word_en</td>
+                    <td>Otto</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -25,7 +25,8 @@ namespace MyEnglishWords.Controllers
         public IActionResult Index()
         {
             ViewBag.Username = HttpContext.Session.GetString("Username");
-            return View();
+            int[] enumNames = (int[])Enum.GetValues(typeof(Category));
+            return View(enumNames);
         }
 
 

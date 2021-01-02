@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using EnglishWords.Data;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace MyEnglishWords.Controllers
 {
@@ -22,6 +25,8 @@ namespace MyEnglishWords.Controllers
         {
             _logger = logger;
             _context = context;
+
+
         }
         [HttpGet]
         public IActionResult Login()
@@ -43,11 +48,37 @@ namespace MyEnglishWords.Controllers
             HttpContext.Session.SetString("Username", LoggedInUser.Username);
             HttpContext.Session.SetString("UserId", Convert.ToString(LoggedInUser.Id));
             HttpContext.Session.SetString("Role", Convert.ToString(LoggedInUser.is_superuser));
-            if (HttpContext.Session.GetString("Role") == "True")
+
+
+            ClaimsIdentity identity = null;
+            bool isAuthenticate = false;
+            if (LoggedInUser.is_superuser == true)
             {
-                return RedirectToAction("Dashboard");
+                identity = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name,LoggedInUser.Username),
+                    new Claim(ClaimTypes.Role,"Admin"),
+                }, CookieAuthenticationDefaults.AuthenticationScheme);
+                isAuthenticate = true;
             }
-            return RedirectToAction("Index", "Home");
+            if (LoggedInUser.is_superuser == false)
+            {
+                identity = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name,LoggedInUser.Username),
+                    new Claim(ClaimTypes.Role,"User"),
+                }, CookieAuthenticationDefaults.AuthenticationScheme);
+                isAuthenticate = true;
+            }
+            if (isAuthenticate)
+            {
+                var principal = new ClaimsPrincipal(identity);
+                var login = HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,principal);
+                return RedirectToAction("Index","Home");
+                
+            }
+
+            return View();
         }
 
         
@@ -92,10 +123,31 @@ namespace MyEnglishWords.Controllers
             
             return View();
         }
-        public IActionResult Logout()
+
+        public void deleteCookies()
         {
+                
+        }
+        public async Task<IActionResult> Logout()
+        {
+
+            if (HttpContext != null)
+            {
+                if (HttpContext.Request.Cookies.Count > 0)
+                {
+                    var siteCookies = HttpContext.Request.Cookies.Where(c => c.Key.Contains(".AspNetCore.") || c.Key.Contains("Microsoft.Authentication"));
+                    foreach (var cookie in siteCookies)
+                    {
+                        Response.Cookies.Delete(cookie.Key);
+                    }
+                }
+
+            }
             HttpContext.Session.Clear();
-            return RedirectToAction("Login");
+            await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Login","User");
         }
 
 

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnglishWords.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201231165442_wordDuzenlendi")]
-    partial class wordDuzenlendi
+    [Migration("20210101212811_ilkOlusma")]
+    partial class ilkOlusma
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,9 @@ namespace EnglishWords.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int?>("UserId")

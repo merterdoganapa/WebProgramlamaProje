@@ -27,7 +27,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#portfolio">CATEGORIES</a></li>
-                        @if (Context.Session.GetString("Role") == "False")
+                        @if (Context.Session.GetString("Username") != null)
                         {
                             <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="Category" asp-action="MyWords">MY WORDS</a></li>
                         }
@@ -38,7 +38,7 @@
                         }
                         else
                         {
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Logout">LOGOUT, <small>@ViewBag.Username</small></a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Logout">LOGOUT, <small>@Context.Session.GetString("Username")</small></a></li>
                         }
 
 
@@ -54,13 +54,6 @@
             @RenderBody()
         </main>
     </div>
-
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2020 - MyEnglishWords - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            </div>
-        </footer>*@
-
 
     <footer class="footer text-center" style="margin-top: 145px;">
         <div class="container">
