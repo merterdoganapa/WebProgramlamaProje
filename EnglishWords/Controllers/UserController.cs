@@ -83,17 +83,6 @@ namespace MyEnglishWords.Controllers
 
         
 
-        public IActionResult Dashboard()
-        {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("Username")))
-            {
-                return RedirectToAction("Login");
-            }
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            ViewBag.Role = HttpContext.Session.GetString("Role");
-            return View();
-        }
-
         [HttpGet]
         public IActionResult Register()
         {
@@ -124,10 +113,6 @@ namespace MyEnglishWords.Controllers
             return View();
         }
 
-        public void deleteCookies()
-        {
-                
-        }
         public async Task<IActionResult> Logout()
         {
 
@@ -135,7 +120,8 @@ namespace MyEnglishWords.Controllers
             {
                 if (HttpContext.Request.Cookies.Count > 0)
                 {
-                    var siteCookies = HttpContext.Request.Cookies.Where(c => c.Key.Contains(".AspNetCore.") || c.Key.Contains("Microsoft.Authentication"));
+                    var siteCookies = HttpContext.Request.Cookies.Where(c => c.Key.Contains(".AspNetCore.") ||
+                    c.Key.Contains("Microsoft.Authentication"));
                     foreach (var cookie in siteCookies)
                     {
                         Response.Cookies.Delete(cookie.Key);

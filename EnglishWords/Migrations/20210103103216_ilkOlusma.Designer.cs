@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnglishWords.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210101212811_ilkOlusma")]
+    [Migration("20210103103216_ilkOlusma")]
     partial class ilkOlusma
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace EnglishWords.Migrations
                     b.Property<string>("Comment_content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("WordId")
@@ -86,10 +86,7 @@ namespace EnglishWords.Migrations
                     b.Property<int>("Category")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UserId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("date_created")
@@ -112,9 +109,7 @@ namespace EnglishWords.Migrations
                 {
                     b.HasOne("EnglishWords.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.HasOne("EnglishWords.Models.Word", "Word")
                         .WithMany()
@@ -127,7 +122,9 @@ namespace EnglishWords.Migrations
                 {
                     b.HasOne("EnglishWords.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

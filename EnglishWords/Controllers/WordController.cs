@@ -29,7 +29,6 @@ namespace EnglishWords.Controllers
         [HttpGet]
         public IActionResult AddWord()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("Username")))
             {
                 ViewBag.Message = "Kelime eklemeniz için öncelikle giriş yapmalısınız .";
@@ -63,6 +62,8 @@ namespace EnglishWords.Controllers
             string category = word.Category.ToString();
             _context.Word.Remove(word);
             await _context.SaveChangesAsync();
+
+
             if (HttpContext.Session.GetString("Role") == "True")
             {
                 return RedirectToAction(category,"Category");
@@ -106,7 +107,7 @@ namespace EnglishWords.Controllers
                 return NotFound();
             }
             ViewBag.word = _context.Word.Include(x => x.User).Where(x => x.Id == id).FirstOrDefault();
-            ViewBag.CommentList = _context.Comment.Where(x => x.WordId == id).ToList();
+            ViewBag.CommentList = _context.Comment.Include(x => x.User).Where(x => x.WordId == id).ToList();
             return View();
         }
         [HttpPost]
@@ -118,7 +119,7 @@ namespace EnglishWords.Controllers
             _comment.date_created = DateTime.Now;
             _comment.Comment_content = comment.Comment_content;
             _context.Comment.Add(_comment);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction("Detail");
         }
 

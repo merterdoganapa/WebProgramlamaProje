@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using EnglishWords.Data;
+using Microsoft.Extensions.Localization;
+using Microsoft.AspNetCore.Localization;
 
 namespace MyEnglishWords.Controllers
 {
@@ -15,18 +17,30 @@ namespace MyEnglishWords.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
+        private readonly IStringLocalizer<HomeController> _localizer;
 
-        public HomeController(ILogger<HomeController> logger,ApplicationDbContext context)
+        public HomeController(ILogger<HomeController> logger,ApplicationDbContext context, IStringLocalizer<HomeController> localizer)
         {
             _logger = logger;
             _context = context;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Username = HttpContext.Session.GetString("Username");
-            int[] enumNames = (int[])Enum.GetValues(typeof(Category));
-            return View(enumNames);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
 

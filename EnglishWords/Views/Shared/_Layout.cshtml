@@ -1,5 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Http;
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
 
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,19 +33,19 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#portfolio">CATEGORIES</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#portfolio">@Localizer["category"]</a></li>
                         @if (Context.Session.GetString("Username") != null)
                         {
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="Category" asp-action="MyWords">MY WORDS</a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="Category" asp-action="MyWords">@Localizer["mywords"]</a></li>
                         }
                         @if (Context.Session.GetString("Username") == null)
                         {
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Login">LOGIN</a></li>
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Register">REGISTER</a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Login">@Localizer["login"]</a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Register">@Localizer["register"]</a></li>
                         }
                         else
                         {
-                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Logout">LOGOUT, <small>@Context.Session.GetString("Username")</small></a></li>
+                            <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="" asp-controller="User" asp-action="Logout">@Localizer["logout"], <small>@Context.Session.GetString("Username")</small></a></li>
                         }
 
 
@@ -47,8 +54,11 @@
             </div>
         </nav>
 
-
     </header>
+
+
+
+
     <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -61,23 +71,18 @@
                 <!-- Footer Location-->
                 <!-- Footer Social Icons-->
                 <div class="col-lg-4 mb-5 mb-lg-0">
-                    <h4 class="text-uppercase mb-4">Around the Web</h4>
+                    <h4 class="text-uppercase mb-4">@Localizer["media"]</h4>
                     <!--<a class="btn btn-outline-light btn-social mx-1 sosyalmedya" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>-->
                     <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/merterdoganapa"><i class="fab fa-fw fa-github"></i></a>
                     <a class="btn btn-outline-light btn-social mx-1" href="https://www.instagram.com/merterdoganapaa/"><i class="fab fa-fw fa-instagram-square"></i></a>
                 </div>
                 <div class="col-lg-4">
-
+                    
                 </div>
                 <!-- Footer About Text-->
                 <div class="col-lg-4" style="float:right">
-                    <h4 class="text-uppercase mb-4">About Freelancer</h4>
-                    <p class="lead mb-0">
-                        Freelance is a free to use, MIT licensed Bootstrap theme created by<br />
-                        <a href="http://startbootstrap.com">Start Bootstrap</a>
-
-                    </p>
+                    @await Html.PartialAsync("_SelectLanguagePartial")
                 </div>
             </div>
         </div>

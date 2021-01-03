@@ -8,9 +8,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using EnglishWords.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EnglishWords.Controllers
 {
+    [Authorize(Roles = "Admin,User")]
     public class CommentController : Controller
     {
         private readonly ILogger<CommentController> _logger;

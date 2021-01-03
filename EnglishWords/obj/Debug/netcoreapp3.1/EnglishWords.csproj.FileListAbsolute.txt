@@ -162,5 +162,14 @@ C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Word\UpdateWord.cshtml.g.cs
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Word\Detail.cshtml.g.cs
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Admin\Dashboard.cshtml.g.cs
-C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Category\Deneme.cshtml.g.cs
 C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Comment\UpdateComment.cshtml.g.cs
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\EnglishWords.csproj.GenerateResource.cache
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SelectLanguagePartial.cshtml.g.cs
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\bin\Debug\netcoreapp3.1\en\EnglishWords.resources.dll
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\bin\Debug\netcoreapp3.1\tr\EnglishWords.resources.dll
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\en\EnglishWords.resources.dll
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\tr\EnglishWords.resources.dll
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\EnglishWords.Resources.Views.Shared._Layout.en.resources
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\EnglishWords.Resources.Views.Shared._Layout.tr.resources
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\EnglishWords.Resources.View.Home.Index.en.resources
+C:\Users\Mert_\source\repos\EnglishWords\EnglishWords\obj\Debug\netcoreapp3.1\EnglishWords.Resources.View.Home.Index.tr.resources

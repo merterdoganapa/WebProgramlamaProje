@@ -32,8 +32,7 @@ namespace EnglishWords.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     word_en = table.Column<string>(nullable: true),
                     word_tr = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: true),
+                    UserId = table.Column<int>(nullable: false),
                     Category = table.Column<int>(nullable: false),
                     date_created = table.Column<DateTime>(nullable: false)
                 },
@@ -45,7 +44,7 @@ namespace EnglishWords.Migrations
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -55,7 +54,7 @@ namespace EnglishWords.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WordId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: true),
                     Comment_content = table.Column<string>(nullable: true),
                     date_created = table.Column<DateTime>(nullable: false)
                 },
@@ -67,7 +66,7 @@ namespace EnglishWords.Migrations
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Comment_Word_WordId",
                         column: x => x.WordId,

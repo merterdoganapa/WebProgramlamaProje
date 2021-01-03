@@ -27,7 +27,6 @@ namespace MyEnglishWords.Controllers
             _logger = logger;
             _context = context;
         }
-
         public IActionResult MyWords()
         {
             ViewBag.WordList = _context.Word.Where(x => x.UserId == int.Parse(HttpContext.Session.GetString("UserId"))).ToList();

@@ -302,6 +302,14 @@
         "runtime": {
           "EnglishWords.dll": {}
         },
+        "resources": {
+          "en/EnglishWords.resources.dll": {
+            "locale": "en"
+          },
+          "tr/EnglishWords.resources.dll": {
+            "locale": "tr"
+          }
+        },
         "compile": {
           "EnglishWords.dll": {}
         }

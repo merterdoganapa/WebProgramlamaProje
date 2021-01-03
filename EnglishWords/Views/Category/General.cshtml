@@ -38,24 +38,27 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                <tr>
 
-                        <td scope="row">
-                            <a href="/Word/Detail/@item.Id">
-                                @Html.DisplayFor(modelItem => item.word_en)
-                            </a>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.word_tr)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.User.Username)
-                        </td>
+                    <td scope="row">
+                        <a href="/Word/Detail/@item.Id">
+                            @Html.DisplayFor(modelItem => item.word_en)
+                        </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.word_tr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User.Username)
+                    </td>
+                    @if (Context.Session.GetString("Role") == "True")
+                    {
                         <td>
                             <a href="/Word/DeleteWord/@item.Id"><img src="~/images/trash.png" alt=""></a>
                             <a href="/Word/UpdateWord/@item.Id"><img src="~/images/arrow.png" alt=""></a>
                         </td>
-                    </tr>
+                    }
+                </tr>
                 }
             </tbody>
         </table>

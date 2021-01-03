@@ -27,16 +27,17 @@
 
                 @foreach (var item in @ViewBag.WordList)
                 {
-                    <tr>
-                        <th scope="row"><a>@item.word_en</a></th>
-                        <td>@item.word_tr</td>
-                        <td>@item.Category</td>
-                        <td>
+                <tr>
+                    <th scope="row"><a href="/Word/Detail/@item.Id">@item.word_en</a></th>
+                    <td>@item.word_tr</td>
+                    <td>@item.Category</td>
+                    <td>
                             <a href="/Word/DeleteWord/@item.Id"><img src="~/images/trash.png" alt=""></a>
                             <a href="/Word/UpdateWord/@item.Id"><img src="~/images/arrow.png" alt=""></a>
-                        </td>
-                        
-                    </tr>
+                    </td>
+                    
+
+                </tr>
 
 
                 }
